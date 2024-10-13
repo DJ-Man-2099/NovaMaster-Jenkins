@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Run App") {
             steps {
-                bat "ls"
+                bat "dir"
             }
         }
     }
