@@ -4,12 +4,12 @@ pipeline {
         stage('Clone repository') {
             steps {
                 // Checkout code from GitHub
-                git url: 'https://github.com/MariaGeorge22/CI-CD.git', branch: 'main'
+                git url: 'https://github.com/MariaGeorge22/NovaMaster-Jenkins.git', branch: 'main'
             }
         }
         stage("Run App") {
             steps {
-                bat "dir"
+                bat "python manage.py runserver"
             }
         }
     }
