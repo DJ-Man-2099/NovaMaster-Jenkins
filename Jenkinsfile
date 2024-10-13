@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Run App") {
             steps {
-                bat "python manage.py runserver"
+                bat "ls"
             }
         }
     }
