@@ -32,7 +32,7 @@ pipeline {
                         sh "docker rm ${env.CONTAINER_NAME} || true"
                     }
                     // Run the Docker container
-                    docker.image("${env.IMAGE_NAME}:latest").run("-d --name ${env.CONTAINER_NAME} -p 8000:4000")
+                    docker.image("${env.IMAGE_NAME}:latest").run("-d --name ${env.CONTAINER_NAME} -p 4000:8000")
                 }
             }
         }
