@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Run App") {
             steps {
-=                script {
+              script {
                     // Run the Docker container
                     docker.run("novamaster-jenkins:${env.BUILD_ID}")
                 }
