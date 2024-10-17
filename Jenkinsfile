@@ -16,7 +16,7 @@ pipeline {
             steps {
              script {
                     // Build the Docker image
-                    def image = docker.build("novamaster-jenkins:${env.BUILD_ID}") // Change "myapp" to your image name
+                    def image = docker.build("${env.IMAGE_NAME}:latest") // Change "myapp" to your image name
                 }
             }
         }
@@ -24,10 +24,7 @@ pipeline {
             steps {
               script {
                     // Run the Docker container
-                    docker.image("novamaster-jenkins:${env.BUILD_ID}").inside {
-                        // Commands to execute inside the container
-                        sh 'echo "Running inside the Docker container"'
-                    }
+                    docker.image("${env.IMAGE_NAME}:latest").run('-d --name novaverse')
                 }
             }
         }
