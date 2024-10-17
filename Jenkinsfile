@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'novaverse-jenkins'  // Replace with your Docker image name
+        CONTAINER_NAME = 'novaverse'  // Replace with your Docker image name
     }
 
     stages {
@@ -23,8 +24,13 @@ pipeline {
         stage("Run App") {
             steps {
               script {
+                if (dockerInspect(env.CONTAINER_NAME)) {
+                        // Stop and remove the existing container
+                        sh "docker stop ${env.CONTAINER_NAME} || true"
+                        sh "docker rm ${env.CONTAINER_NAME} || true"
+                    }
                     // Run the Docker container
-                    docker.image("${env.IMAGE_NAME}:latest").run('-d --name novaverse')
+                    docker.image("${env.IMAGE_NAME}:latest").run("-d --name ${CONTAINER_NAME} -p 8000:4000")
                 }
             }
         }
