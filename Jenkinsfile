@@ -24,7 +24,7 @@ pipeline {
         stage("Run App") {
             steps {
               script {
-                def containerExists = sh(script: "docker ps -a -q -f name=${env.containerName}", returnStdout: true).trim()
+                def containerExists = sh(script: "docker ps -a -q -f name=${env.CONTAINER_NAME}", returnStdout: true).trim()
 
                 if (containerExists) {
                         // Stop and remove the existing container
