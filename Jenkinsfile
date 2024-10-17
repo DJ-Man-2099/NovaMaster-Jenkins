@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    environment {
+        IMAGE_NAME = 'novaverse-jenkins'  // Replace with your Docker image name
+    }
+
     stages {
         stage('Clone repository') {
             steps {
@@ -12,6 +17,12 @@ pipeline {
                 bat "pip install -r requirements.txt"
                 bat "python manage.py runserver"
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()  // Clean workspace after the build
         }
     }
 }
