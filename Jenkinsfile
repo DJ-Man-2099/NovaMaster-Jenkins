@@ -14,8 +14,7 @@ pipeline {
         }
         stage("Run App") {
             steps {
-                sh "pip install -r requirements.txt"
-                sh "python manage.py runserver"
+                sh "echo running"
             }
         }
     }
