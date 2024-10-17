@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Build App") {
             steps {
-=                script {
+             script {
                     // Build the Docker image
                     def image = docker.build("novamaster-jenkins:${env.BUILD_ID}") // Change "myapp" to your image name
                 }
