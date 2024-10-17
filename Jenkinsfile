@@ -24,7 +24,7 @@ pipeline {
             steps {
               script {
                     // Run the Docker container
-                    docker.run("novamaster-jenkins:${env.BUILD_ID}")
+                    docker.image("novamaster-jenkins:${env.BUILD_ID}")
                 }
             }
         }
