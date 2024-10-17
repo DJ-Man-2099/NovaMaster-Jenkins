@@ -24,7 +24,10 @@ pipeline {
             steps {
               script {
                     // Run the Docker container
-                    docker.image("novamaster-jenkins:${env.BUILD_ID}")
+                    docker.image("novamaster-jenkins:${env.BUILD_ID}").inside {
+                        // Commands to execute inside the container
+                        sh 'echo "Running inside the Docker container"'
+                    }
                 }
             }
         }
