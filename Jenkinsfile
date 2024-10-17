@@ -24,13 +24,15 @@ pipeline {
         stage("Run App") {
             steps {
               script {
-                if (dockerInspect(env.CONTAINER_NAME)) {
+                def containerExists = sh(script: "docker ps -a -q -f name=${env.containerName}", returnStdout: true).trim()
+
+                if (containerExists) {
                         // Stop and remove the existing container
                         sh "docker stop ${env.CONTAINER_NAME} || true"
                         sh "docker rm ${env.CONTAINER_NAME} || true"
                     }
                     // Run the Docker container
-                    docker.image("${env.IMAGE_NAME}:latest").run("-d --name ${CONTAINER_NAME} -p 8000:4000")
+                    docker.image("${env.IMAGE_NAME}:latest").run("-d --name ${env.CONTAINER_NAME} -p 8000:4000")
                 }
             }
         }
