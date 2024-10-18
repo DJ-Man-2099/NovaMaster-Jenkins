@@ -10,7 +10,7 @@ pipeline {
         stage('Clone repository') {
             steps {
                 // Checkout code from GitHub
-                git url: 'https://github.com/MariaGeorge22/NovaMaster-Jenkins.git', branch: 'main'
+                git url: 'https://github.com/MariaGeorge22/NovaMaster-Jenkins', branch: 'main'
             }
         }
         stage("Build App") {
